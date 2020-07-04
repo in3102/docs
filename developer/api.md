@@ -315,10 +315,23 @@ const webContentsId = utools.createBrowserWindow('test.html?param=xxxxxx', {
     preload: 'test/preload.js'
   }
 })
-require('electron').ipcRenderer.sendTo(webContentsId, 'ping')
+// 向子窗口传递数据
+require('electron').ipcRenderer.sendTo(webContentsId, 'ping', data)
 ```
 
+```js
+// 在新建窗口 JavaScript 中接收父窗口传递过来的数据
+const { ipcRenderer } = require('electron')
+ipcRenderer.on('ping', (event, data) => {
+    console.log(event);
+    console.log(data);
+})
+```
+
+
+
 ### `isDarkColors()`
+
 > 是否深色模式
 #### 示例
 ```js
@@ -555,7 +568,7 @@ utools.copyText('Hi, uTools')
 ### `showNotification(body, clickFeatureCode)`
 - `body` String
 - `clickFeatureCode` String (可选)
-   
+  
   > plugin.json 配置的 feature.code, 点击通知进入插件功能(该 feature.cmds 至少包含一个搜索字符串关键字)
 > 显示系统通知
 #### 示例
