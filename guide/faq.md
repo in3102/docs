@@ -3,14 +3,6 @@
 
 本文档收集了部分用户在使用 uTools 过程中遇到的问题，如果这里没有你遇到的问题，可以在 uTools 官方论坛里发帖寻求帮助。
 
-<style>
-br {
-  content: "";
-  height: 10px;
-  display: block;
-}
-</style>
-
 ## 安装
 ### 安装时遇到了「进度条卡在一半」的情况怎么办？<Badge text="Windows"/>
 导致这个问题的原因可能是由于旧版本的 uTools 未卸载干净，可尝试按照以下步骤进行处理。
