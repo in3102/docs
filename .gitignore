@@ -16,3 +16,6 @@
 **/.git
 **/.npmrc
 
+# yarn
+yarn.lock
+
