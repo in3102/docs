@@ -2,20 +2,25 @@
 本文档收集了部分用户在使用 uTools 过程中遇到的问题，如果这里没有你遇到的问题，可以在 uTools 官方论坛里发帖寻求帮助。
 
 ## 安装
-### `win` 安装时遇到了「进度条卡在一半」的情况怎么办？
+### 安装时遇到了「进度条卡在一半」的情况怎么办？<Badge text="Windows"/>
 导致这个问题的原因可能是由于旧版本的 uTools 未卸载干净，可尝试按照以下步骤进行处理。
 1. 检查「程序与功能」界面中是否还有旧版本 uTools 安装项存在，如果存在旧版本，先卸载旧版本再重新安装新版本 uTools。
 2. 如果没有在第1步中找到旧版本安装项，则使用「Everything」等搜索工具全盘查找带有「uTools」字样的文件或文件夹，将它们全部删除后再重新安装新版本 uTools。
 3. 检查 uTools 安装程序是否被「360」、「火绒」等杀毒软件阻止安装，请将 uTools 安装程序放入杀毒软件白名单后再重新安装新版本 uTools。
 
-### `mac` 安装时遇到了「无法打开 uTools，因为 Apple 无法检查是否包含恶意软体」的情况怎么办？
+### 安装时遇到了「无法打开 uTools，因为 Apple 无法检查是否包含恶意软体」的情况怎么办？<Badge text="macOS"/>
 依次打开「系统偏好设置」→「安全性与隐私」→「通用」，选择「仍要安装」即可。
 
-### `linux` 安装时遇到了「A JavaScript error occurred in the main process」的情况怎么办？
+### 安装时遇到了「A JavaScript error occurred in the main process」的情况怎么办？<Badge text="Linux"/>
 参考 [Aksuru](https://yuanliao.info/u/51376)、[littlezhong](https://yuanliao.info/u/51839) 和 [microcheiria](https://yuanliao.info/u/34323) 在 uTools 论坛中提出的 [解决方案](https://yuanliao.info/d/1865)。
 
+### 为什么 uTools 没有自动更新到官网最新版本？uTools 会自动更新吗？
+uTools 具备自动更新到最新版的功能；  
+目前 uTools 官网的发布分为「稳定版」和「测试版」，通常测试版 uTools 的版本号显示为「uTools-x.x.x-beta」；**与稳定版相比，测试版更新会更频繁，同时遇到 bug 的机会也会更多**，因此，为了大多数用户能够稳定地使用 uTools 提供的功能，测试版将不会自动更新，只有稳定版才会自动更新；  
+所以，如果你有亟待解决的 bug 或希望体验的新功能，可以从官网下载测试版的安装包手动安装即可。
+
 ## 使用
-### `win` 如何使用「管理员」权限打开软件？
+### 如何使用「管理员」权限打开软件？<Badge text="Windows"/>
 在 uTools 列表里选中要打开的软件，使用快捷键 `Ctrl + 回车（Enter）`打开即可。
 
 ### uTools 中如何搜到可直接运行的绿色软件？
