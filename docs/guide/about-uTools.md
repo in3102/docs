@@ -30,16 +30,6 @@ uTools是一个极简、插件化、跨平台的现代化桌面软件。通过�
 * **数据同步：** 云端同步，永不丢失
 
   
-
-## 下载地址
-> 通过以下链接，可以下载uTools最新版本
-
-**uTools windows版（64位）** [下载](https://download.u-tools.cn/windows/64)
-
-**uTools windows版（32位）** [下载](https://download.u-tools.cn/windows/32)
-
-**uTools Mac版** [下载](https://download.u-tools.cn/mac)
-
 ## 联系方式
 [![](https://img.shields.io/badge/微博-uTools-47b784.svg)](https://weibo.com/p/1005056859563493/home)
 [![](https://img.shields.io/badge/Email-tellme@u.tools-47b784.svg)](mailto://tellme@u.tools)
