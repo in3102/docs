@@ -23,7 +23,7 @@ utools.onPluginReady(() => {
       > plugin.json 配置的 feature.code
     - `type` String
       
-      > plugin.json 配置的 feature.cmd.code
+      > plugin.json 配置的 feature.cmd.type，可以为 "text"、"img"、 "files"、 "regex"、 "over"、"window"
     - `payload` String | Object | Array
       
       > feature.cmd.type 对应匹配的数据
@@ -36,6 +36,37 @@ utools.onPluginReady(() => {
 utools.onPluginEnter(({code, type, payload, optional}) => {
   console.log('用户进入插件', code, type, payload)
 })
+
+/* 
+type 为 "files" 时， payload 值示例
+[
+	{
+		"isFile": true,
+		"isDirectory": false,
+		"name": "demo.js",
+		"path": "C:\\demo.js"
+	}
+]
+
+type 为 "window" 时， payload 值示例
+{
+	"id": 264584,
+	"class": "Chrome_WidgetWin_1",
+	"title": "demo",
+	"x": -8,
+	"y": -8,
+	"width": 1936,
+	"height": 1056,
+	"appPath": "C:\\demo.exe",
+	"pid": 232,
+	"app": "demo.exe"
+}
+
+type 为 "img" 时， payload 值示例
+data:image/png;base64,...
+
+type 为 "text"、"regex"、 "over" 时， payload 值为进入插件时的主输入框文本
+*/
 ```
 
 ### `onPluginOut(callback)`
