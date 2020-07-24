@@ -91,7 +91,7 @@ window.exports = {
          indexes:[
             {
                t: '这是标题',
-               d: '这是描述'.
+               d: '这是描述',
                p: 'doc/xxx.html' //页面, 只能是相对路径
             }
          ],
