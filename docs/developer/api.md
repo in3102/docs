@@ -23,7 +23,7 @@ utools.onPluginReady(() => {
       > plugin.json 配置的 feature.code
     - `type` String
       
-      > plugin.json 配置的 feature.cmd.code
+      > plugin.json 配置的 feature.cmd.type，可以为 "text"、"img"、 "files"、 "regex"、 "over"、"window"
     - `payload` String | Object | Array
       
       > feature.cmd.type 对应匹配的数据
@@ -36,6 +36,37 @@ utools.onPluginReady(() => {
 utools.onPluginEnter(({code, type, payload, optional}) => {
   console.log('用户进入插件', code, type, payload)
 })
+
+/* 
+type 为 "files" 时， payload 值示例
+[
+	{
+		"isFile": true,
+		"isDirectory": false,
+		"name": "demo.js",
+		"path": "C:\\demo.js"
+	}
+]
+
+type 为 "window" 时， payload 值示例
+{
+	"id": 264584,
+	"class": "Chrome_WidgetWin_1",
+	"title": "demo",
+	"x": -8,
+	"y": -8,
+	"width": 1936,
+	"height": 1056,
+	"appPath": "C:\\demo.exe",
+	"pid": 232,
+	"app": "demo.exe"
+}
+
+type 为 "img" 时， payload 值示例
+data:image/png;base64,...
+
+type 为 "text"、"regex"、 "over" 时， payload 值为进入插件时的主输入框文本
+*/
 ```
 
 ### `onPluginOut(callback)`
@@ -790,6 +821,69 @@ utools.db.allDocs([
   _id: "demo2", _rev: "1-f0399b42cc6123a9cc8503632ba7b3a7", data: "demo"
 }]
 */
+```
+
+### `utools.db.putAttachment(docId, attachmentId, rev, attachment, type)`
+- `docId` String
+
+  > 文档 ID 
+- `attachmentId` String
+
+  > 附件 ID 
+- `rev` String  (可选)
+
+  > 文档版本, 文档已存在必填 
+- `attachment` Buffer | Uint8Array
+
+  > 附件，最大 20M
+- `type` String
+
+  > 附件类型，比如：image/png, text/plain
+- `返回` Object
+> 存储附件到文档
+```js
+  const testTxtBuffer = require('fs').readFileSync('/path/to/test.txt')
+
+  // 存储附件到新文档
+  utools.db.putAttachment('demo', 'test.txt', testTxtBuffer, 'text/plain')
+  // 返回 {id: "demo", ok: true, rev: "1-44055137915c41c080fc920a8470e14b"}
+
+  // 存储附件到已存在的文档
+  utools.db.putAttachment('demo', 'test.txt', '1-44055137915c41c080fc920a8470e14b', testTxtBuffer, 'text/plain')
+  // 返回 {id: "demo", ok: true, rev: "2-abdbbc4227884d2fa90e12666f5bdfd0"}
+```
+
+### `utools.db.getAttachment(docId, attachmentId)`
+- `docId` String
+
+  > 文档 ID 
+- `attachmentId` String
+
+  > 附件 ID 
+- `返回` Unit8Array
+> 获取附件
+```js
+  const data = utools.db.getAttachment('demo', 'text.txt')
+  if (data) {
+    const buffer = Buffer.from(data)
+  }
+```
+
+### `utools.db.removeAttachment(docId, attachmentId, rev)`
+- `docId` String
+
+  > 文档 ID 
+- `attachmentId` String
+
+  > 附件 ID 
+- `rev` String
+
+  > 文档版本号
+- `返回` Object
+> 删除附件
+```js
+  const result = utools.db.removeAttachment('demo', 'text.txt', '1-20c9b99681a2454a9fa9566a255823cb')
+  console.log(result)
 ```
 
 ## [ubrowser](./ubrowser.html)
