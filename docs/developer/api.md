@@ -749,6 +749,24 @@ utools.db.put({
 
 另外需要注意，每次更新时都要传入完整的文档数据，无法对单个字段进行更新。
 
+::: danger 注意
+在 uTools 的生命周期里，数据库在`onPluginReady`钩子函数执行完成后才被初始化完成，即`onPluginReady`**函数执行前无法执行所有和数据库相关的操作**，如果在`onPluginReady`执行完成前调用了数据库相关的 API，代码将会抛出一个异常
+```
+Uncaught Error: called after onPluginReady event
+    at Object.get (/Applications/uTools.app/Contents/Resources/app.asar/dist/apisdk.js:273)
+    at window.get (/Users/lanyuanxiaoyao/Project/squirrel-old/utools-server/dist/preload.js:160)
+    at Xi.fetch (app.82c75e58.js:8)
+    at lo.Ze (app.82c75e58.js:8)
+    at new lo (app.82c75e58.js:8)
+    at app.82c75e58.js:8
+    at Object.<anonymous> (app.82c75e58.js:8)
+    at n (app.82c75e58.js:1)
+    at Object.<anonymous> (app.82c75e58.js:8)
+    at n (app.82c75e58.js:1)
+```
+建议将数据库初始化的操作放在`onPluginReady`函数内。
+:::
+
 ### `utools.db.get(id)`
 - `id` String  
 - `返回` Object
