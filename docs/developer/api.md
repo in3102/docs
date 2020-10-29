@@ -672,6 +672,21 @@ console.log(utools.getLocalId())
 console.log(utools.getPath('downloads'))
 ```
 
+### `getFileIcon(filePath)`
+- `filePath` String
+  > 文件路径、文件扩展名、"folder"
+- `返回` String
+> 获取文件图标
+#### 示例
+```js
+// 获取扩展名为 "txt" 的文件图标
+utools.getFileIcon('.txt')
+// 获取文件夹图标
+utools.getFileIcon('folder')
+// 获取文件图标
+utools.getFileIcon('D:\\test.url')
+```
+
 ### `getCurrentFolderPath()`
 - `返回` String
 > 获取当前文件管理器路径(linux 不支持)，呼出uTools前的活动窗口为资源管理器才能获取
