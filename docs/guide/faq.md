@@ -14,23 +14,12 @@
 ### 安装时遇到了「A JavaScript error occurred in the main process」的情况怎么办？<Badge text="Linux"/>
 参考 [Aksuru](https://yuanliao.info/u/51376)、[littlezhong](https://yuanliao.info/u/51839) 和 [microcheiria](https://yuanliao.info/u/34323) 在 uTools 论坛中提出的 [解决方案](https://yuanliao.info/d/1865)。
 
-### 为什么 uTools 没有自动更新到官网最新版本？uTools 会自动更新吗？
-uTools 具备自动更新到最新版的功能； 
-
-目前 uTools 官网的发布分为「稳定版」和「测试版」，通常测试版 uTools 的版本号显示为「uTools-x.x.x-beta」；**与稳定版相比，测试版更新会更频繁，同时遇到 bug 的机会也会更多**，因此，为了大多数用户能够稳定地使用 uTools 提供的功能，测试版将不会自动更新，只有稳定版才会自动更新；  
-
-所以，如果你有亟待解决的 bug 或希望体验的新功能，可以从官网下载测试版的安装包手动安装即可。
-
 ## 使用
 ### 如何使用「管理员」权限打开软件？<Badge text="Windows"/>
 在 uTools 列表里选中要打开的软件，使用快捷键 `Ctrl + 回车（Enter）`打开即可。
 
-### uTools 中如何搜到可直接运行的绿色软件？
-1. 找到该绿色软件的主程序（可以是启动程序的「快捷方式」），复制后激活 uTools 输入框或拖动该文件到 uTools 输入框中，即可看到「加入到 uTools 本地应用搜索」的选项，确认后可在 uTools 列表中搜索到该软件。
-> - 上述的「主程序」文件支持 `.exe`、`.bat`、`.lnk`（即「快捷方式」）和 `.app`（macOS）等4种格式。
-> - 添加的主程序文件在被移动或删除后会自动移出 uTools 的搜索列表，无需手动操作。
-2. 在 uTools 的设置中可以配置「自定义应用目录」指定一个目录，将绿色软件的主程序放入该目录后会自动被 uTools 检索到。
-> 为了防止 uTools 索引大量无用的可执行文件，「自定义应用目录」指定的目录中仅支持`.lnk`和`.app`两种文件格式。
+### uTools 搜不到绿色软件？
+1. 找到该绿色软件的主程序，复制后呼出 uTools 输入框或拖动该文件到 uTools 输入框中，即可看到「加入到 uTools 搜索启动」的选项，确认后可在 uTools 列表中搜索到该软件。（文件和文件夹也可以添加）
 
 ## 插件
 ### 「剪贴板」插件安装失败怎么办？
