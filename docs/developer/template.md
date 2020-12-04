@@ -59,7 +59,7 @@ window.exports = {
                {
                   title: '这是标题',
                   description: '这是描述',
-                  icon:'' // 图标，
+                  icon:'', // 图标
                   url: 'https://yuanliao.info',
                   other: 'xxx'
                }
