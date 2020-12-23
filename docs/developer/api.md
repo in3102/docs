@@ -326,13 +326,16 @@ utools.stopFindInPage()
 utools.startDrag('/path/to/file')
 ```
 
-### `createBrowserWindow(url, options)`
+### `createBrowserWindow(url, options, callback)`
 - `url` String
   
   > 相对路径的html文件 例如: test.html?param=xxx
 - `options` Object
   
   > 与 [Electron API new BrowserWindow](https://www.electronjs.org/docs/api/browser-window#new-browserwindowoptions) 参数一样, 注意: preload 需配置相对位置
+- `callback` Function (可选)
+  
+  > `url` 加载完成时回调
 - `返回` Integer
   
   > 返回 webContentsId
@@ -345,9 +348,10 @@ const webContentsId = utools.createBrowserWindow('test.html?param=xxxxxx', {
   webPreferences: {
     preload: 'test/preload.js'
   }
+}, () => {
+  // 向子窗口传递数据
+  require('electron').ipcRenderer.sendTo(webContentsId, 'ping', data)
 })
-// 向子窗口传递数据
-require('electron').ipcRenderer.sendTo(webContentsId, 'ping', data)
 ```
 
 ```js
@@ -359,14 +363,14 @@ ipcRenderer.on('ping', (event, data) => {
 })
 ```
 
-
-
 ### `isDarkColors()`
 
 > 是否深色模式
 #### 示例
 ```js
-document.body.className = utools.isDarkColors() ? 'dark-mode' : ''
+utools.onPluginEnter(({code, type, payload}) => {
+  document.body.className = utools.isDarkColors() ? 'dark-mode' : ''
+})
 ```
 
 ## 动态增减功能
@@ -407,6 +411,18 @@ utools.setFeature({
 > 动态删除本插件的某个功能。
 ```js
 utools.removeFeature('code')
+```
+
+## 用户
+获取当前用户头像、昵称
+
+### `getUser()`
+- `返回` Object
+
+  > { avatar: String, nickname: String, type: 'member' | 'user' } | null
+> 获取当前用户，未登录帐号返回 `null`
+```js
+console.log(utools.getUser())
 ```
 
 ## 工具
@@ -647,6 +663,14 @@ utools.shellBeep()
 console.log(utools.getLocalId())
 ```
 
+### `getAppVersion()`
+- `返回` String
+> 获取软件版本
+#### 示例
+```js
+console.log(utools.getAppVersion())
+```
+
 ### `getPath(name)`
 - `name` String
   > 你可以通过名称请求以下的路径:
@@ -863,9 +887,9 @@ utools.db.allDocs([
 - `attachmentId` String
 
   > 附件 ID 
-- `rev` String  (可选)
+- `rev` String
 
-  > 文档版本, 文档已存在必填 
+  > 文档版本
 - `attachment` Buffer | Uint8Array
 
   > 附件，最大 20M
@@ -878,7 +902,7 @@ utools.db.allDocs([
   const testTxtBuffer = require('fs').readFileSync('/path/to/test.txt')
 
   // 存储附件到新文档
-  utools.db.putAttachment('demo', 'test.txt', testTxtBuffer, 'text/plain')
+  utools.db.putAttachment('demo', 'test.txt', null, testTxtBuffer, 'text/plain')
   // 返回 {id: "demo", ok: true, rev: "1-44055137915c41c080fc920a8470e14b"}
 
   // 存储附件到已存在的文档
